@@ -1,0 +1,14 @@
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	undo = reset --hard
+	changes = diff --name-status -r
+	diff = diff --stat -r
+	br = branch
+	tree = log --graph --oneline --all --pretty=format:'%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen%cr%Creset %Cblue%an%Creset %gn'
+[user]
+	name = Alexandre Garcia
+	email = alexandre@vmarms.com
+[push]
+	default = simple

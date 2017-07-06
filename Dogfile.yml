@@ -1,0 +1,34 @@
+- task: bash
+  description: install bash dotfiles
+  code: stow -t ~/ bash
+
+- task: shell
+  description: install shell dotfiles
+  code: stow -t ~/ shell
+
+- task: tmux
+  description: install tmux dotfiles
+  code: stow -t ~/ tmux
+
+- task: git
+  description: install git dotfiles
+  code: stow -t ~/ git
+
+- task: ssh
+  description: install ssh dotfiles
+  code: stow -t ~/ ssh
+
+- task: vim
+  description: install vim dotfiles
+  code: stow -t ~/ vim
+
+- task: all
+  description: install all dotfiles
+  pre:
+    - bash
+    - shell
+    - tmux
+    - git
+    - ssh
+    - vim
+

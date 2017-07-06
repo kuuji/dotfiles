@@ -1,0 +1,23 @@
+#function _update_ps1() {
+#if type "python2.7" 2>&1 > /dev/null; then
+#    PS1="$(python2.7 $SSHHOME/.sshrc.d/powerline/powerline-shell.py --colorize-hostname $? 2> /dev/null)"
+#fi
+#}
+
+#if [ "$TERM" != "linux" ]; then
+#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
+export PROMPT_COMMAND="settitle `hostname -s`"
+export GIT_AUTHOR_NAME='Alexandre Garcia'
+export GIT_AUTHOR_EMAIL='alexandre@vmfarms.com'
+export GIT_COMMITTER_NAME='Alexandre Garcia'
+export GIT_COMMITTER_EMAIL='alexandre@vmfarms.com'
+alias vmfadm="/root/vmfadm/vmfadm.py"
+alias tmux="tmux -f $SSHHOME/.sshrc.d/.tmux.conf"
+export TERM="xterm"
+settitle() {
+    printf "\033k$1\033\\"
+}
+
+alias ssh="$SSHHOME/.sshrc.d/sshrc -F $SSHHOME/.sshrc.d/config"
+source $SSHHOME/.sshrc.d/.shell_prompt.sh
