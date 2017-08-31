@@ -17,6 +17,11 @@ alias vi='vim'
 filtername(){
   jq '.[]  | select(.name | contains("'"$1"'"))';
 }
+
+farmfilter(){
+  jq '.[]  | select(.'"$1"' | contains("'"$2"'"))';
+}
+
 # pretty bash
 source ~/.shell_prompt.sh
 
@@ -35,10 +40,16 @@ export HH_CONFIG=hicolor,rawhistory,blacklist
 export HISTCONTROL=ignorespace
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; settitle `hostname -s`;$PROMPT_COMMAND"
+export EDITOR=/usr/local/bin/vim
 ## rename tmux windows
 settitle() {
     printf "\033k$1\033\\"
 }
+
+function cd_up() {
+  cd $(printf "%0.s../" $(seq 1 $1 ));
+}
+alias 'cd..'='cd_up'
 
 ## if this is interactive shell, then bind hh to Ctrl-r (for Vi mode check doc)
 if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh -- \C-j"'; fi
@@ -47,3 +58,6 @@ if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh -- \C-j"'; fi
 if [ -f ~/.bash_vmf ]; then
      source ~/.bash_vmf
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.base16-monokai.config ] && source ~/.base16-monokai.config
